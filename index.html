@@ -82,6 +82,61 @@
       <div class="news-grid" id="news-grid" aria-live="polite"></div>
     </section>
 
+    <section class="container editor" aria-labelledby="editor-title">
+      <div class="editor-header">
+        <h2 id="editor-title">Вход для редакторов</h2>
+        <p>
+          Управляйте новостями напрямую в интерфейсе: добавляйте материалы, и они сразу попадают в
+          ленту. Данные сохраняются локально и готовы к подключению CMS.
+        </p>
+      </div>
+      <div class="editor-panel">
+        <form class="editor-login" id="editor-login" autocomplete="off">
+          <h3>Авторизация редактора</h3>
+          <label>
+            Логин
+            <input type="text" name="username" placeholder="editor" required />
+          </label>
+          <label>
+            Пароль
+            <input type="password" name="password" placeholder="••••••••" required />
+          </label>
+          <button class="btn" type="submit">Войти</button>
+          <p class="hint">Демо-доступ: editor / venti24</p>
+          <p class="status" id="login-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <form class="editor-form hidden" id="editor-form">
+          <h3>Новая новость</h3>
+          <label>
+            Заголовок
+            <input type="text" name="title" placeholder="Заголовок новости" required />
+          </label>
+          <label>
+            Категория
+            <select name="category" required>
+              <option value="Главное">Главное</option>
+              <option value="Город">Город</option>
+              <option value="Экономика">Экономика</option>
+              <option value="Культура">Культура</option>
+              <option value="Спорт">Спорт</option>
+            </select>
+          </label>
+          <label>
+            Короткий текст
+            <textarea name="excerpt" rows="4" placeholder="Короткое описание новости" required></textarea>
+          </label>
+          <label>
+            Автор
+            <input type="text" name="author" placeholder="Имя автора" required />
+          </label>
+          <button class="btn" type="submit">Опубликовать</button>
+          <button class="btn ghost" type="button" id="logout-btn">Выйти</button>
+          <p class="status" id="editor-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
     <section class="container cms" aria-labelledby="cms-title">
       <div>
         <h2 id="cms-title">Готово для CMS</h2>
