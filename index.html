@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Вентишовье-24 — новости региона</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#" aria-label="Вентишовье-24">
+        <span class="logo-mark" aria-hidden="true">
+          <svg width="355" height="94" viewBox="0 0 355 94" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M-0.000683621 93.01V1.31H42.5743C53.1853 1.31 61.1763 4.06101 66.5473 9.43201C70.7393 13.624 72.8353 18.864 72.8353 25.021V25.283C72.8353 35.501 67.3333 41.658 60.7833 45.064C71.3943 49.125 77.9443 55.413 77.9443 67.596V67.858C77.9443 84.626 64.3203 93.01 43.6223 93.01H-0.000683621ZM52.7923 28.689V28.427C52.7923 22.27 48.0763 18.995 39.5613 18.995H19.6493V38.383H38.2513C47.1593 38.383 52.7923 35.501 52.7923 28.689ZM57.9013 65.369V65.107C57.9013 58.95 53.4473 55.151 42.9673 55.151H19.6493V75.325H43.6223C52.5303 75.325 57.9013 72.181 57.9013 65.369ZM101.089 93.01V1.31H138.555C160.432 1.31 173.663 14.148 173.663 33.012V33.274C173.663 54.627 157.157 65.5 136.59 65.5H121.263V93.01H101.089ZM121.263 47.553H137.245C147.332 47.553 153.227 41.527 153.227 33.667V33.405C153.227 24.366 146.939 19.519 136.852 19.519H121.263V47.553ZM190.558 93.01V77.028L221.081 52.007C232.609 42.575 236.932 37.597 236.932 29.999C236.932 22.139 231.954 18.078 224.618 18.078C217.413 18.078 212.697 22.008 205.885 30.392L191.737 18.995C200.776 6.812 209.553 4.76837e-06 225.928 4.76837e-06C244.792 4.76837e-06 257.499 11.135 257.499 28.296V28.558C257.499 44.016 249.639 51.352 233.395 64.059L218.461 75.587H258.416V93.01H190.558ZM322.527 93.01V73.229H277.725L274.45 58.95L324.754 0.655004H341.784V56.854H354.098V73.229H341.784V93.01H322.527ZM298.161 56.854H322.527V28.296L298.161 56.854Z" fill="white"/>
+          </svg>
+        </span>
+        <div>
+          <span class="logo-title">Вентишовье-24</span>
+          <span class="logo-subtitle">Новости региона · 24/7</span>
+        </div>
+      </a>
+      <nav class="main-nav" aria-label="Главная навигация">
+        <a href="#top">Главное</a>
+        <a href="#local">Город</a>
+        <a href="#economy">Экономика</a>
+        <a href="#culture">Культура</a>
+        <a href="#sport">Спорт</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn ghost" type="button">Подписка</button>
+        <button class="btn" type="button">Войти</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page" id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-story">
+          <div class="tag">Срочно</div>
+          <h1>Вентишовье ускоряет цифровые сервисы для горожан</h1>
+          <p>
+            Новый портал «24» объединит обращения, новости и уведомления. Пилотный запуск стартует
+            уже в следующем месяце.
+          </p>
+          <div class="meta">Сегодня · 09:00 · Главная редакция</div>
+          <div class="hero-actions">
+            <button class="btn" type="button">Читать статью</button>
+            <button class="btn ghost" type="button">Смотреть эфир</button>
+          </div>
+        </div>
+        <div class="hero-highlight">
+          <div class="highlight-card">
+            <div class="tag neutral">Лента</div>
+            <h3>Погода недели: спокойный антициклон и солнечные дни</h3>
+            <p>Температура поднимется до +20 °C, синоптики обещают сухой ветер.</p>
+            <div class="meta">2 часа назад · Погода</div>
+          </div>
+          <div class="highlight-card">
+            <div class="tag neutral">Аналитика</div>
+            <h3>Как региональные бренды выходят на федеральный рынок</h3>
+            <p>Пять стратегий роста: от маркетплейсов до локальных коллабораций.</p>
+            <div class="meta">Вчера · Экономика</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container content">
+      <div class="section-header">
+        <h2>Последние новости</h2>
+        <div class="filters">
+          <button class="filter active" type="button">Все</button>
+          <button class="filter" type="button">Главное</button>
+          <button class="filter" type="button">Город</button>
+          <button class="filter" type="button">Экономика</button>
+          <button class="filter" type="button">Культура</button>
+        </div>
+      </div>
+
+      <div class="news-grid" id="news-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="container editor" aria-labelledby="editor-title">
+      <div class="editor-header">
+        <h2 id="editor-title">Вход для редакторов</h2>
+        <p>
+          Управляйте новостями напрямую в интерфейсе: добавляйте материалы, и они сразу попадают в
+          ленту. Данные сохраняются локально и готовы к подключению CMS.
+        </p>
+      </div>
+      <div class="editor-panel">
+        <form class="editor-login" id="editor-login" autocomplete="off">
+          <h3>Авторизация редактора</h3>
+          <label>
+            Логин
+            <input type="text" name="username" placeholder="editor" required />
+          </label>
+          <label>
+            Пароль
+            <input type="password" name="password" placeholder="••••••••" required />
+          </label>
+          <button class="btn" type="submit">Войти</button>
+          <p class="hint">Демо-доступ: editor / venti24</p>
+          <p class="status" id="login-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <form class="editor-form hidden" id="editor-form">
+          <h3>Новая новость</h3>
+          <label>
+            Заголовок
+            <input type="text" name="title" placeholder="Заголовок новости" required />
+          </label>
+          <label>
+            Категория
+            <select name="category" required>
+              <option value="Главное">Главное</option>
+              <option value="Город">Город</option>
+              <option value="Экономика">Экономика</option>
+              <option value="Культура">Культура</option>
+              <option value="Спорт">Спорт</option>
+            </select>
+          </label>
+          <label>
+            Короткий текст
+            <textarea name="excerpt" rows="4" placeholder="Короткое описание новости" required></textarea>
+          </label>
+          <label>
+            Автор
+            <input type="text" name="author" placeholder="Имя автора" required />
+          </label>
+          <button class="btn" type="submit">Опубликовать</button>
+          <button class="btn ghost" type="button" id="logout-btn">Выйти</button>
+          <p class="status" id="editor-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="container cms" aria-labelledby="cms-title">
+      <div>
+        <h2 id="cms-title">Готово для CMS</h2>
+        <p>
+          Структура карточек использует data-атрибуты и единый шаблон, чтобы легко подключить любую
+          CMS или API. Достаточно заменить массив новостей на данные с сервера.
+        </p>
+      </div>
+      <div class="cms-panel">
+        <div class="cms-item">
+          <span class="cms-label">/api/news</span>
+          <span>REST/GraphQL</span>
+        </div>
+        <div class="cms-item">
+          <span class="cms-label">/images</span>
+          <span>CDN-галерея</span>
+        </div>
+        <div class="cms-item">
+          <span class="cms-label">/live</span>
+          <span>Прямой эфир</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo-title">Вентишовье-24</div>
+        <p class="footer-text">
+          Независимый новостной портал. Эксклюзивы, аналитика и прямые эфиры каждый день.
+        </p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <ul>
+          <li><a href="#top">Главное</a></li>
+          <li><a href="#local">Город</a></li>
+          <li><a href="#economy">Экономика</a></li>
+          <li><a href="#culture">Культура</a></li>
+          <li><a href="#sport">Спорт</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li>Редакция: info@ventishovye24.ru</li>
+          <li>Реклама: ads@ventishovye24.ru</li>
+          <li>Телеграм: @ventishovye24</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2024 Вентишовье-24. Все права защищены.</div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
