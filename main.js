@@ -1,7 +1,7 @@
-const news = [
+const seedNews = [
   {
     id: 1,
-    title: "В городе открыли умный транспортный хаб",
+    title: "В городе открыли умный транспортный порнохаб",
     category: "Город",
     excerpt:
       "Новый узел объединяет автобусы, электробусы и каршеринг. Ожидается рост пассажиропотока на 18%.",
@@ -10,7 +10,7 @@ const news = [
   },
   {
     id: 2,
-    title: "Региональный стартап привлёк 120 млн рублей",
+    title: "Региональный стартап привлёк 120 млн рублей из карманов проституток и цыганок",
     category: "Экономика",
     excerpt:
       "Инвесторы поддержали платформу для агроаналитики. Команда расширится вдвое уже этой весной.",
@@ -28,7 +28,7 @@ const news = [
   },
   {
     id: 4,
-    title: "Команда «Север» вышла в финал кубка",
+    title: "Команда «Вятка» вышла в финал кубка",
     category: "Спорт",
     excerpt:
       "Матч завершился со счётом 3:1. Тренер отметил сильную игру обороны и поддержал молодёжь.",
@@ -37,7 +37,7 @@ const news = [
   },
   {
     id: 5,
-    title: "Горожане выбрали дизайн новой набережной",
+    title: "Горожане выбрали дизайн новой набережной. Финансирование будет за счёт зарплаты губернатора",
     category: "Главное",
     excerpt:
       "В голосовании участвовали 18 тысяч человек. Победила концепция с зелёными террасами и амфитеатром.",
@@ -55,7 +55,27 @@ const news = [
   },
 ];
 
+const storageKey = "ventishovye24-news";
 const newsGrid = document.getElementById("news-grid");
+const loginForm = document.getElementById("editor-login");
+const editorForm = document.getElementById("editor-form");
+const loginStatus = document.getElementById("login-status");
+const editorStatus = document.getElementById("editor-status");
+const logoutBtn = document.getElementById("logout-btn");
+
+const getStoredNews = () => {
+  const raw = localStorage.getItem(storageKey);
+  return raw ? JSON.parse(raw) : [];
+};
+
+const saveStoredNews = (items) => {
+  localStorage.setItem(storageKey, JSON.stringify(items));
+};
+
+const buildNewsList = () => {
+  const stored = getStoredNews();
+  return [...stored, ...seedNews];
+};
 
 const renderNews = (items) => {
   newsGrid.innerHTML = items
@@ -72,22 +92,74 @@ const renderNews = (items) => {
     .join("");
 };
 
-renderNews(news);
-
 const filterButtons = document.querySelectorAll(".filter");
+let activeCategory = "Все";
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     filterButtons.forEach((btn) => btn.classList.remove("active"));
     button.classList.add("active");
 
-    const category = button.textContent.trim();
-    if (category === "Все") {
-      renderNews(news);
-      return;
-    }
-
-    const filtered = news.filter((item) => item.category === category);
-    renderNews(filtered);
+    activeCategory = button.textContent.trim();
+    applyFilter();
   });
 });
+
+const applyFilter = () => {
+  const items = buildNewsList();
+  if (activeCategory === "Все") {
+    renderNews(items);
+    return;
+  }
+
+  const filtered = items.filter((item) => item.category === activeCategory);
+  renderNews(filtered);
+};
+
+const setEditorState = (isLoggedIn) => {
+  loginForm.classList.toggle("hidden", isLoggedIn);
+  editorForm.classList.toggle("hidden", !isLoggedIn);
+};
+
+loginForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(loginForm);
+  const username = formData.get("username");
+  const password = formData.get("password");
+
+  if (username === "editor" && password === "venti24") {
+    loginStatus.textContent = "Добро пожаловать! Можно публиковать новости.";
+    setEditorState(true);
+  } else {
+    loginStatus.textContent = "Неверный логин или пароль.";
+  }
+});
+
+logoutBtn.addEventListener("click", () => {
+  setEditorState(false);
+  loginStatus.textContent = "";
+  editorStatus.textContent = "";
+});
+
+editorForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(editorForm);
+  const newItem = {
+    id: Date.now(),
+    title: formData.get("title"),
+    category: formData.get("category"),
+    excerpt: formData.get("excerpt"),
+    time: "Только что",
+    author: formData.get("author"),
+  };
+
+  const stored = getStoredNews();
+  stored.unshift(newItem);
+  saveStoredNews(stored);
+  editorForm.reset();
+  editorStatus.textContent = "Новость опубликована и сохранена в локальной CMS.";
+  applyFilter();
+});
+
+setEditorState(false);
+applyFilter();
